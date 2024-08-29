@@ -1,5 +1,4 @@
 'use client'
-import "./Calender.css"
 import { useState } from "react"
 
 const Months = [
@@ -38,7 +37,7 @@ const Calender = () => {
     const offset = new Date(currYear, currMonth, 0).getDay() + 1;
 
     const handleNextClick = () => {
-        if(currMonth == 11){
+        if (currMonth == 11) {
             setCurrYear(prev => prev + 1);
             setCurrMonth(0);
         }
@@ -46,7 +45,7 @@ const Calender = () => {
     }
 
     const handlePrevClick = () => {
-        if(currMonth == 0){
+        if (currMonth == 0) {
             setCurrYear(prev => prev - 1);
             setCurrMonth(11);
         }
@@ -54,14 +53,14 @@ const Calender = () => {
     }
 
     return (
-        <div className="calender-container text-black">
+        <div className="calender-container text-black w-[300px] border-4 rounded-lg p-5 m-auto mt-24">
             <div className="title-container flex justify-between items-center ">
                 <div className="title">
                     {Months[currMonth]} {currYear}
                 </div>
                 <div className="arrow-container flex gap-x-2.5">
-                    <div className="arrow bg-white cursor-pointer" onClick={handlePrevClick}>{'<'}</div>
-                    <div className="arrow bg-white cursor-pointer" onClick={handleNextClick}>{'>'}</div>
+                    <div className="arrow bg-white cursor-pointer bg-slate-400 rounded-full w-[24px] text-center" onClick={handlePrevClick}>{'<'}</div>
+                    <div className="arrow bg-white cursor-pointer bg-slate-400 rounded-full w-[24px] text-center" onClick={handleNextClick}>{'>'}</div>
                 </div>
             </div>
             <div className="days-container grid grid-cols-7 text-center">
@@ -70,7 +69,7 @@ const Calender = () => {
             <div className="date-matrix-container grid grid-cols-7 text-center">
                 {Array(currMonthTotalDays + offset).fill(null).map((data, idx) => {
                     if (idx - offset + 1 < 1) return <div key={idx}></div>
-                    return <div key={idx} className={(currMonth == todaysMonth && currYear == todaysYear && (idx - offset + 1) == todaysDate) ? 'bg-blue-400' : ''}>{idx - offset + 1}</div>
+                    return <div key={idx} className={(currMonth == todaysMonth && currYear == todaysYear && (idx - offset + 1) == todaysDate) ? 'bg-blue-400 rounded-full' : ''}>{idx - offset + 1}</div>
                 })}
             </div>
         </div>
